@@ -23,11 +23,11 @@ export default {
 </script>
 ```
 
-我们预计会得到一个url:("http://www.baidu.com/test(1).png")拼入style指令中,经过测试,init_img方法确实执行了一次,且view可以看到处理结束的字符串,然而style里只有"http://www.baidu.com/",为什么?
+我们预计会得到一个url:("http://www.baidu.com/test(1).png") 拼入style指令中,经过测试,init_img方法确实执行了一次,且view可以看到处理结束的字符串,然而style里只有 "http://www.baidu.com/" ,为什么?
 
 ## 问题定位
 
-检查了一下结果,感觉(1)非常可疑,于是使用replace删除了(1),发现style正常渲染了,虽然由于地址错误没有取到图片,但已经确认了是这里小括号的问题.
+检查了一下结果,感觉(1)非常可疑,于是使用replace删除了(1),发现style正常渲染了,虽然由于地址错误没有取到图片,但已经确认了是这里小括号的问题.  
 因此可以大致推定,是style在取值时,对值做了一次检查,没有通过,则直接被置为空字符串.
 
 ## 解决方案
